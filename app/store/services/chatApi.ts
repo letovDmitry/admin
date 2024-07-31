@@ -21,7 +21,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token", { path: '/admin' });
+    Cookies.remove("access_token_admin", { path: '/admin' });
     window.location.reload();
   }
   return result;
@@ -34,12 +34,12 @@ export const chatApi = createApi({
   endpoints: (builder) => ({
     getMessagesByOrderId: builder.query<any, string>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: `/${data}`,
           method: "GET",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -48,12 +48,12 @@ export const chatApi = createApi({
 
     getUnseenMessagesByOrderId: builder.query<any, void>({
       query() {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: `/unseen`,
           method: "GET",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },

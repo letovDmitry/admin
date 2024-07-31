@@ -42,7 +42,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token", { path: '/admin' });
+    Cookies.remove("access_token_admin", { path: '/admin' });
     window.location.reload();
   }
   return result;
@@ -55,13 +55,13 @@ export const ordersApi = createApi({
   endpoints: (builder) => ({
     getOrdersForMember: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/member",
           method: "GET",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -70,13 +70,13 @@ export const ordersApi = createApi({
 
     getNewOrdersForBooster: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/booster_new",
           method: "GET",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -85,13 +85,13 @@ export const ordersApi = createApi({
 
     getOrdersForBooster: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/booster",
           method: "GET",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -100,12 +100,12 @@ export const ordersApi = createApi({
 
     takeOrderForBooster: builder.mutation<IOrder, number>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: `/${data}`,
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -114,12 +114,12 @@ export const ordersApi = createApi({
 
     completeOrderForBooster: builder.mutation<IOrder, number>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: `/complete/${data}`,
           method: "PUT",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -140,13 +140,13 @@ export const ordersApi = createApi({
       }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: `/`,
           method: "POST",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },

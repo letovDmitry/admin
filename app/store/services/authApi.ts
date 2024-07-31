@@ -17,7 +17,7 @@ export const authApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     signUp: builder.mutation<
-      { access_token: string; isBooster: boolean },
+      { access_token_admin: string; isBooster: boolean },
       { email: string; }
     >({
       query(data) {
@@ -30,7 +30,7 @@ export const authApi = createApi({
     }),
 
     recoverPassword: builder.mutation<
-      { access_token: string; isBooster: boolean },
+      { access_token_admin: string; isBooster: boolean },
       { email: string; }
     >({
       query(data) {
@@ -56,7 +56,7 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          await Cookies.set("access_token", data.access_token, { path: '/admin' });
+          await Cookies.set("access_token_admin", data.access_token, { path: '/admin' });
           await Cookies.set("isBooster", data.isBooster, { path: '/admin' });
         } catch (error) {
           console.log(error);

@@ -36,7 +36,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token", { path: '/admin' });
+    Cookies.remove("access_token_admin", { path: '/admin' });
     window.location.reload();
   }
   return result;
@@ -49,13 +49,13 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     getMe: builder.query<IUser, void>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/me",
           method: "GET",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -64,13 +64,13 @@ export const userApi = createApi({
 
     changeUser: builder.mutation<IUser, Partial<IUser>>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/",
           method: "PUT",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -79,13 +79,13 @@ export const userApi = createApi({
 
     changePassword: builder.mutation<IUser, { newPassword: string }>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/password",
           method: "PUT",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -94,19 +94,19 @@ export const userApi = createApi({
 
     deleteUser: builder.mutation<IUser, void>({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/",
           method: "DELETE",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          await Cookies.remove("access_token", { path: '/admin' });
+          await Cookies.remove("access_token_admin", { path: '/admin' });
           await Cookies.remove("isBooster", { path: '/admin' });
 
           window.location.reload();

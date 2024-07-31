@@ -21,7 +21,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token", { path: '/admin' });
+    Cookies.remove("access_token_admin", { path: '/admin' });
     window.location.reload();
   }
   return result;
@@ -37,12 +37,12 @@ export const adminApi = createApi({
       void
     >({
       query() {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/",
           method: "GET",
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -55,13 +55,13 @@ export const adminApi = createApi({
       { email: string; password: string }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/",
           method: "POST",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -73,13 +73,13 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/approve",
           method: "PATCH",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -91,13 +91,13 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/cancel",
           method: "PATCH",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
@@ -109,13 +109,13 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token", { path: '/admin' });
+        const access_token_admin = Cookies.get("access_token_admin", { path: '/admin' });
         return {
           url: "/",
           method: "DELETE",
           body: data,
           headers: {
-            Authorization: `Bearer ${access_token}`,
+            Authorization: `Bearer ${access_token_admin}`,
           },
         };
       },
