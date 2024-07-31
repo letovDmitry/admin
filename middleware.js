@@ -19,7 +19,7 @@ export default async function middleware(req) {
     req.nextUrl.pathname !== "/login" &&
     req.nextUrl.pathname !== "/register"
   )
-    return NextResponse.redirect(new URL("/login", req.url));
+    return NextResponse.redirect(new URL("/admin/login", req.url));
 }
 
 export const config = {
