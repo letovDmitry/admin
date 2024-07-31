@@ -34,7 +34,7 @@ export const chatApi = createApi({
   endpoints: (builder) => ({
     getMessagesByOrderId: builder.query<any, string>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: `/${data}`,
           method: "GET",
@@ -48,7 +48,7 @@ export const chatApi = createApi({
 
     getUnseenMessagesByOrderId: builder.query<any, void>({
       query() {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: `/unseen`,
           method: "GET",

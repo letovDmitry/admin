@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(req) {
-  const token = req.cookies.get("access_token");
+  const token = req.cookies.get("access_token", { path: '/admin' });
 
   if (req.nextUrl.pathname === "/") {
     return NextResponse.redirect(new URL("/admin", req.url));

@@ -49,7 +49,7 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     getMe: builder.query<IUser, void>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/me",
           method: "GET",
@@ -64,7 +64,7 @@ export const userApi = createApi({
 
     changeUser: builder.mutation<IUser, Partial<IUser>>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/",
           method: "PUT",
@@ -79,7 +79,7 @@ export const userApi = createApi({
 
     changePassword: builder.mutation<IUser, { newPassword: string }>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/password",
           method: "PUT",
@@ -94,7 +94,7 @@ export const userApi = createApi({
 
     deleteUser: builder.mutation<IUser, void>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/",
           method: "DELETE",

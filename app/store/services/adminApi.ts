@@ -37,7 +37,7 @@ export const adminApi = createApi({
       void
     >({
       query() {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/",
           method: "GET",
@@ -55,7 +55,7 @@ export const adminApi = createApi({
       { email: string; password: string }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/",
           method: "POST",
@@ -73,7 +73,7 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/approve",
           method: "PATCH",
@@ -91,7 +91,7 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/cancel",
           method: "PATCH",
@@ -109,7 +109,7 @@ export const adminApi = createApi({
       { boosterId: number; }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/",
           method: "DELETE",

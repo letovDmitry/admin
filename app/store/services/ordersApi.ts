@@ -55,7 +55,7 @@ export const ordersApi = createApi({
   endpoints: (builder) => ({
     getOrdersForMember: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/member",
           method: "GET",
@@ -70,7 +70,7 @@ export const ordersApi = createApi({
 
     getNewOrdersForBooster: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/booster_new",
           method: "GET",
@@ -85,7 +85,7 @@ export const ordersApi = createApi({
 
     getOrdersForBooster: builder.query<IOrder[], void>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: "/booster",
           method: "GET",
@@ -100,7 +100,7 @@ export const ordersApi = createApi({
 
     takeOrderForBooster: builder.mutation<IOrder, number>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: `/${data}`,
           method: "PUT",
@@ -114,7 +114,7 @@ export const ordersApi = createApi({
 
     completeOrderForBooster: builder.mutation<IOrder, number>({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: `/complete/${data}`,
           method: "PUT",
@@ -140,7 +140,7 @@ export const ordersApi = createApi({
       }
     >({
       query(data) {
-        const access_token = Cookies.get("access_token");
+        const access_token = Cookies.get("access_token", { path: '/admin' });
         return {
           url: `/`,
           method: "POST",
