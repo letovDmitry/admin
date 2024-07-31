@@ -11,7 +11,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  basePath: '/subpath'
+  basePath: '/admin'
 };
 
 module.exports = nextConfig;
