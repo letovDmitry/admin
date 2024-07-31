@@ -7,8 +7,8 @@ import {
 
 const LogoutButton = () => {
   const handleLogout = async () => {
-    await Cookies.remove("access_token");
-    await Cookies.remove("isBooster");
+    await Cookies.remove("access_token", { path: '/admin' });
+    await Cookies.remove("isBooster", { path: '/admin' });
 
     window.location.reload()
   }

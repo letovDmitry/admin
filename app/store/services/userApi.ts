@@ -36,7 +36,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token");
+    Cookies.remove("access_token", { path: '/admin' });
     window.location.reload();
   }
   return result;
@@ -106,8 +106,8 @@ export const userApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          await Cookies.remove("access_token");
-          await Cookies.remove("isBooster");
+          await Cookies.remove("access_token", { path: '/admin' });
+          await Cookies.remove("isBooster", { path: '/admin' });
 
           window.location.reload();
         } catch (error) {

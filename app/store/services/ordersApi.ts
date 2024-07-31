@@ -42,7 +42,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
   if (result.error && result.error.status === 401) {
     console.log(result.error);
-    Cookies.remove("access_token");
+    Cookies.remove("access_token", { path: '/admin' });
     window.location.reload();
   }
   return result;

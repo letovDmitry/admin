@@ -56,8 +56,8 @@ export const authApi = createApi({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          await Cookies.set("access_token", data.access_token);
-          await Cookies.set("isBooster", data.isBooster);
+          await Cookies.set("access_token", data.access_token, { path: '/admin' });
+          await Cookies.set("isBooster", data.isBooster, { path: '/admin' });
         } catch (error) {
           console.log(error);
         }
