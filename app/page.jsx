@@ -6,7 +6,7 @@ import { useEffect } from "react"
 const Homepage = () => {
   const router = useRouter()
   useEffect(() => {
-    router.push("/admin")
+    router.push("/admin/login")
   }, [])
   return (
     <div>Homepage</div>
