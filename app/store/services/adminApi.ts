@@ -9,7 +9,7 @@ import {
 import Cookies from "js-cookie";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "http://localhost:3001/admin",
+  baseUrl: "https://anyboost.ru/api/admin",
 });
 
 const baseQueryWithReauth: BaseQueryFn<
